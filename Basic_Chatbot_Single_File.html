@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Chatbot</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; }
+#chat { border: 1px solid #ccc; padding: 15px; height: 350px; overflow-y: auto; }
+input { width: 75%; padding: 8px; }
+button { padding: 8px 12px; }
+.msg { margin: 8px 0; }
+</style>
+</head>
+<body>
+<h2>Basic Rule-Based Chatbot</h2>
+<div id="chat">
+<div class="msg"><b>Chatbot:</b> Hello! Type 'bye' to end the chat.</div>
+</div>
+<br>
+<input type="text" id="userInput" placeholder="Type a message...">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const text = input.value.trim().toLowerCase();
+    if (!text) return;
+
+    const chat = document.getElementById("chat");
+    chat.innerHTML += `<div class="msg"><b>You:</b> ${text}</div>`;
+
+    let reply;
+    if (text === "hello") {
+        reply = "Hi!";
+    } else if (text === "how are you") {
+        reply = "I'm fine, thanks!";
+    } else if (text === "bye") {
+        reply = "Goodbye!";
+    } else {
+        reply = "Sorry, I don't understand that.";
+    }
+
+    chat.innerHTML += `<div class="msg"><b>Chatbot:</b> ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+    input.value = "";
+}
+</script>
+</body>
+</html>
